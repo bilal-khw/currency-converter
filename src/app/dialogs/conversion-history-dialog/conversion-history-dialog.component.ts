@@ -23,8 +23,8 @@ export class ConversionHistoryDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.dataSource.data = this.data.items;
-    this.dataSource.paginator = this.paginator;
+    this.dataSource.data = JSON.parse(localStorage.getItem('history') || '[]').reverse();
+    // this.dataSource.paginator = this.paginator;
   }
 
   onPaginateChange(event: PageEvent) {
