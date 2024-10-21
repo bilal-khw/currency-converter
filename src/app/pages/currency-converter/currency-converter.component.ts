@@ -106,6 +106,7 @@ export class CurrencyConverterComponent implements OnInit {
   // Add conversion result to history
   addToHistory() {
     const { fromCurrency, toCurrency, amount } = this.converterForm.value;
+    if (!amount) return;
     let current = localStorage.getItem('history')
       ? JSON.parse(localStorage.getItem('history') || '[]')
       : [];
