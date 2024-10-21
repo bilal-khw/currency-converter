@@ -1,16 +1,50 @@
+/* Center the mat-cards */
 .container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  mat-card {
-    padding: 1rem;
-  }
-  
-  @media (max-width: 600px) {
-    .row {
-      display: block;
-    }
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Center vertically */
+  padding: 10px;
+}
+
+/* Apply a max-width and auto margin to center the mat-cards */
+.card-styling {
+  background-color: #2c3e50;
+  color: white;
+  width: 100%;
+  max-width: 500px; /* Adjust based on your design */
+  margin: 10px auto; /* Center horizontally */
+  padding: 20px;
+}
+
+/* Fix for input field overflow issue */
+.full-width-input {
+  width: 100%;
+}
+
+input[matInput] {
+  width: 100%;
+  box-sizing: border-box; /* Ensure padding/border stays inside the element */
+  color: white;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+/* Result/Loader container for consistent layout */
+.result-loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  margin-top: 20px;
+}
+
+h5 {
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+  color: rgb(242, 247, 247);
+}

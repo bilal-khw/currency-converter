@@ -53,7 +53,7 @@ export class CurrencyConverterComponent implements OnInit {
     private dialog: MatDialog,
     private http: HttpClient,
     private currencyService: CurrencyService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.currencyService.getCurrencies().subscribe(
@@ -70,21 +70,24 @@ export class CurrencyConverterComponent implements OnInit {
         debounceTime(500), // Wait for 500ms pause in input
         distinctUntilChanged(), // Only trigger if values changed
         switchMap((value) => {
-          // Hit API here (replace this with actual API call)
-          this.loading = true;
-          return this.http.get(`${SERVER_URL}/convert`, {
-            params: {
-              base: String(value.fromCurrency),
-              target: String(value.toCurrency),
-              amount: Number(value.amount),
-            },
-          });
+          if (Number(value.amount) && String(value.fromCurrency) && String(value.toCurrency)) {
+            // Hit API here (replace this with actual API call)
+            this.loading = true;
+            return this.http.get(`${SERVER_URL}/convert`, {
+              params: {
+                base: String(value.fromCurrency),
+                target: String(value.toCurrency),
+                amount: Number(value.amount),
+              },
+            });
+          }
+          else { return of(0.00) }
         })
       )
       .subscribe((result: any) => {
         console.log(
           '🚀 ~ CurrencyConverterComponent ~ ngOnInit ~ result:',
-          result,result.toFixed(2),
+          result, result.toFixed(2),
           typeof result
         );
         this.loading = false;
@@ -117,8 +120,8 @@ export class CurrencyConverterComponent implements OnInit {
   }
   openHistoryDialog(): void {
     const dialogRef = this.dialog.open(ConversionHistoryDialogComponent, {
-          width: '400px',
-          height : "600px"
-        });
+      width: '400px',
+      height: "600px"
+    });
   }
 }
