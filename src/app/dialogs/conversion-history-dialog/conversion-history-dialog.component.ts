@@ -19,7 +19,7 @@ export class ConversionHistoryDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    // private dialogRef: MatDialogRef<ConversionHistoryDialogComponent>
+    private dialogRef: MatDialogRef<ConversionHistoryDialogComponent>
   ) {}
 
   ngOnInit() {
@@ -42,5 +42,8 @@ export class ConversionHistoryDialogComponent implements OnInit {
     }, (error:any) => {
       console.error('Error fetching conversion history', error);
     });
+  }
+  closeDialog() {
+    this.dialogRef.close();
   }
 }
